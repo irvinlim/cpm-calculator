@@ -22,6 +22,13 @@
 </main>
 
 <section class="footer">
+  <p class="copyright mb-4">
+    <a
+      href="https://github.com/irvinlim/cpm-calculator"
+      rel="noreferrer"
+      target="_blank">GitHub</a
+    >
+  </p>
   <p class="copyright">
     Copyright &copy; {new Date().getFullYear()} Irvin Lim. All rights reserved.
   </p>
