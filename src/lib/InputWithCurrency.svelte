@@ -39,6 +39,7 @@
       name={`currency-${id}`}
       class="text-right h-full rounded-md border-transparent bg-transparent py-0 pl-2 pr-7 sm:text-sm"
       bind:value={inputCurrency}
+      on:blur={update}
       on:change={update}
     >
       {#each currencies as currency}
@@ -52,6 +53,7 @@
     {id}
     bind:value={inputValue}
     on:input={update}
+    on:blur={update}
     on:change={updateValue}
     class="block w-full border-gray-300 pl-12 sm:text-sm"
     placeholder="0.00"

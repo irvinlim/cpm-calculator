@@ -1,11 +1,5 @@
 <script lang="ts">
-  // Parse and format to split thousands with comma.
-  const parseNumber = (value: string): number => {
-    return parseInt(value.replaceAll(",", ""));
-  };
-  const formatNumber = (value: number): string => {
-    return value.toLocaleString("en-US");
-  };
+  import { formatNumber, parseNumber } from "./utils";
 
   // External props.
   export let id: string;
@@ -34,6 +28,7 @@
   bind:value={inputValue}
   on:input={update}
   on:change={updateValue}
+  on:blur={update}
   class="text-gray-500 border-gray-300 mt-1 block w-full"
   type="text"
   {id}
