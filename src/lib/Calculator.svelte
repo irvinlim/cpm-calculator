@@ -5,10 +5,13 @@
   import InputNumber from './InputNumber.svelte';
 
   let rates = new Map<string, number>();
+  let ratesLastUpdated = new Date();
   let currencies: string[] = [];
   onMount(async () => {
     const data = await fetch('https://open.er-api.com/v6/latest/USD');
-    rates = (await data.json()).rates;
+    const json = await data.json();
+    rates = json.rates;
+    ratesLastUpdated = new Date(json.time_last_update_unix * 1000);
     currencies = Object.keys(rates);
   });
 
@@ -62,24 +65,28 @@
 
 <div class="grid grid-cols-1 gap-6 text-gray-800">
   <div>
-    <label class="block" for="miles">
-      <span>Cost of award ticket (in miles)</span>
+    <label class="text-gray-700 dark:text-gray-300" for="miles">
+      Cost of award ticket (in miles)
     </label>
     <InputNumber id="miles" bind:value={miles} placeholder="e.g. 10000" />
   </div>
 
   <div>
-    <label for="taxes">Taxes and fees</label>
+    <label class="text-gray-700 dark:text-gray-300" for="taxes"
+      >Taxes and fees</label
+    >
     <InputWithCurrency id="taxes" {currencies} bind:value={taxes} />
   </div>
 
   <div>
-    <label for="cost">Cost of cash ticket</label>
+    <label class="text-gray-700 dark:text-gray-300" for="cost"
+      >Cost of cash ticket</label
+    >
     <InputWithCurrency id="cost" {currencies} bind:value={cost} />
   </div>
 
   <div>
-    <label class="block" for="milesLost">
+    <label class="text-gray-700 dark:text-gray-300" for="milesLost">
       <span>Potentially lost miles from accrual (optional)</span>
     </label>
     <InputNumber
@@ -90,7 +97,9 @@
   </div>
 
   <div>
-    <label for="mileTransferFees">Mile transfer fees (optional)</label>
+    <label class="text-gray-700 dark:text-gray-300" for="mileTransferFees"
+      >Mile transfer fees (optional)</label
+    >
     <InputWithCurrency
       id="mileTransferFees"
       {currencies}
@@ -99,7 +108,7 @@
   </div>
 
   <div>
-    <label for="total-cpm-other">
+    <label class="text-gray-700 dark:text-gray-300" for="total-cpm-other">
       <span>Final CPM</span>
     </label>
     <p>
@@ -111,16 +120,22 @@
           <option>{currency}</option>
         {/each}
       </select>
-      <span class="text-gray-300 text-lg">{cpm.toFixed(2)} ¢/mile</span>
+      <span class="text-gray-700 dark:text-gray-300 text-lg"
+        >{cpm.toFixed(2)} ¢/mile</span
+      >
+    </p>
+  </div>
+
+  <div>
+    <p class="text-gray-500 dark:text-gray-100 text-xs">
+      Exchange rates are accurate as of {ratesLastUpdated.toLocaleString()} (local
+      browser time). Information is provided 'as is' and solely for informational
+      purposes.
     </p>
   </div>
 </div>
 
 <style>
-  label {
-    @apply text-gray-300;
-  }
-
   .select-cpm-currency {
     appearance: none;
     -webkit-appearance: none;

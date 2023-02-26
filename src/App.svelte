@@ -3,7 +3,7 @@
   import Calculator from './lib/Calculator.svelte';
 </script>
 
-<main>
+<main class="w-full">
   <section class="header">
     <div class="logo-container">
       <img src="/ticket.png" class="inline h-48 mb-8" alt="Logo" />
