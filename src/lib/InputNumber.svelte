@@ -29,7 +29,7 @@
   on:input={update}
   on:change={updateValue}
   on:blur={update}
-  class="text-gray-500 border-gray-300 mt-1 block w-full"
+  class="text-gray-500 border-gray-300 mt-1 block w-full sm:text-sm"
   type="text"
   {id}
   name={id}

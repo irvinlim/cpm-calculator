@@ -36,7 +36,7 @@
 
   {#if visible}
     <div
-      class="absolute right-0 bg-gray-300 dark:bg-gray-700 z-50 p-4 min-w-[18rem] max-w-md text-sm"
+      class="absolute right-0 bg-gray-300 dark:bg-gray-700 z-50 p-4 min-w-[18rem] max-w-lg text-xs text-gray-700 dark:text-gray-300 rounded-md border border-slate-600"
     >
       <p>{msg}</p>
     </div>
