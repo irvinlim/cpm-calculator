@@ -1,12 +1,13 @@
 <script lang="ts">
   import './tailwind.css';
+  import logoUrl from './assets/ticket.png';
   import Calculator from './lib/Calculator.svelte';
 </script>
 
 <main class="w-full">
   <section class="header">
     <div class="logo-container">
-      <img src="/ticket.png" class="inline h-48 mb-8" alt="Logo" />
+      <img src={logoUrl} class="inline h-48 mb-8" alt="Logo" />
     </div>
     <h1 class="text-4xl mb-4 font-semibold">CPM Calculator</h1>
 

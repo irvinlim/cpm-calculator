@@ -8,7 +8,4 @@ export default defineConfig({
   css: {
     postcss,
   },
-
-  // https://vitejs.dev/guide/static-deploy.html
-  base: "/cpm-calculator/",
 });

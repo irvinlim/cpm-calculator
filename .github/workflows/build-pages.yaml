@@ -34,7 +34,9 @@ jobs:
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
-          cmd: build
+          # Pass --base to change the base path
+          # https://vitejs.dev/guide/static-deploy.html
+          cmd: build --base /cpm-calculator/
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
