@@ -65,7 +65,7 @@
 </script>
 
 <div>
-  <div class="grid grid-cols-2 gap-6 text-gray-800">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-800">
     <div>
       <label
         class="flex justify-between text-gray-700 dark:text-gray-300"
@@ -144,20 +144,22 @@
 
   <div class="p-6 bg-indigo-100 mt-8 mb-8 text-sm">
     <div class="flex justify-between">
-      <p class="text-lg text-gray-600 font-bold">
-        <span>Final CPM:</span>
-        <select
-          class="select-cpm-currency bg-sky-900 text-gray-100 text-center pt-0 pb-0 pl-2 pr-2 ml-2 mr-2 rounded-md border-none"
-          bind:value={inputCPMCurrency}
-        >
-          {#each currencies as currency}
-            <option>{currency}</option>
-          {/each}
-        </select>
-        <span>
-          {formatCurrency(cpm * rates[inputCPMCurrency])}¢ / mile
-        </span>
-      </p>
+      <div class="text-lg text-gray-600 font-bold">
+        <div>
+          <div>Final CPM:</div>
+          <select
+            class="select-cpm-currency bg-indigo-800 text-gray-100 text-center pt-0 pb-0 pl-2 pr-2 mr-2 rounded-md border-none"
+            bind:value={inputCPMCurrency}
+          >
+            {#each currencies as currency}
+              <option>{currency}</option>
+            {/each}
+          </select>
+          <span>
+            {formatCurrency(cpm * rates[inputCPMCurrency])}¢ / mile
+          </span>
+        </div>
+      </div>
       <span class="text-gray-900">
         <Popover
           msg="The cents per mile (CPM) value represents the dollar value that you are getting out of the miles you intend to spend.
