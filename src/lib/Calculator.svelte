@@ -62,6 +62,27 @@
 
     return cpm;
   })();
+
+  // Get a list of all non-USD currencies used.
+  let infoRates: {
+    currency: string;
+    rate: number;
+  }[] = [];
+  $: infoRates = (() => {
+    const currencyList = [
+      taxes.currency,
+      cost.currency,
+      mileTransferFees.currency,
+      inputCPMCurrency,
+    ];
+    return [...new Set(currencyList)]
+      .filter((currency) => currency != 'USD')
+      .sort()
+      .map((currency) => ({
+        currency: currency,
+        rate: rates[currency],
+      }));
+  })();
 </script>
 
 <div>
@@ -191,12 +212,20 @@
     {/if}
   </div>
 
-  <div class="mt-4 mb-4">
-    <p class="text-gray-500 dark:text-gray-100 text-xs">
+  <div class="mt-4 mb-4 text-gray-500 dark:text-gray-100 text-xs">
+    <p class="mb-2">
       Exchange rates are accurate as of {ratesLastUpdated.toLocaleString()} (local
       browser time). Information is provided 'as is' and solely for informational
       purposes.
     </p>
+    {#if infoRates.length > 0}
+      <p class="mb-2">
+        Exchange rates used: 1 USD
+        {#each infoRates as rate}
+          <span> = {rate.rate} {rate.currency} </span>
+        {/each}
+      </p>
+    {/if}
   </div>
 </div>
 
