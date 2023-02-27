@@ -1,7 +1,7 @@
 <script lang="ts">
-  import './tailwind.css';
-  import logoUrl from './assets/ticket.png';
-  import Calculator from './lib/Calculator.svelte';
+  import "./tailwind.css";
+  import logoUrl from "./assets/ticket.png";
+  import Calculator from "./lib/Calculator.svelte";
 </script>
 
 <main class="w-full">
